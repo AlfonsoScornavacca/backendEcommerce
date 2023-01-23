@@ -20,7 +20,11 @@ namespace DataAccess
             modelBuilder.Entity<OrderItem>()
                 .HasOne<Product>()
                 .WithMany()
-                .HasForeignKey();
+                .HasForeignKey(p => p.ProductId);
+
+            modelBuilder.Entity<OrderItem>().
+                HasKey(p => new { p.ProductId, p.OrderId });
+
         }
     }
 }
