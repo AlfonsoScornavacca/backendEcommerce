@@ -34,7 +34,7 @@ namespace DataAccess.Repository
         public async Task<ICollection<User>> GetAll(int pageSize, int pageNumber)
         {
             IQueryable<User> query = _context.Users;
-            query = query.Skip(pageSize).Take(pageNumber);
+            query = query.Skip((pageSize - 1) * pageSize).Take(pageNumber);
             return await query
                 .AsNoTracking()
                 .ToListAsync();
