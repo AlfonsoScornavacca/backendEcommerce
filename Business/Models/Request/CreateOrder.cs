@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Business.Models.Request
 {
-    internal class CreateOrder
+    public class CreateOrder
     {
+        public string Customer { get; set; }
+        public DateTime Date { get; set; }
+        public virtual ICollection<CreateOrderItem> Items { get; set; }
     }
 }
