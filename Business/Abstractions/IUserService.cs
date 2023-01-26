@@ -9,7 +9,7 @@ namespace Business.Abstractions
         Task<UserResponse> Create(CreateUser user);
         Task<UserResponse> Update(int id, CreateUser user);
         Task<ICollection<UserResponse>> GetAll(UserRequest request);
-        Task<UserResponse> GetUser(int id);
-        Task<UserResponse> GetUser(string email);
+        Task<UserResponse> GetById(int id);
+        Task<UserResponse> GetByEmail(string email);
     }
 }
