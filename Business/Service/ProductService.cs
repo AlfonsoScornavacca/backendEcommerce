@@ -1,11 +1,12 @@
-﻿using Business.Models.Request;
+﻿using Business.Abstractions;
+using Business.Models.Request;
 using Business.Models.Response;
 using DataAccess.Abstractions;
 using DataAccess.Entities;
 
 namespace Business.Service
 {
-    public class ProductService : IProductRepository
+    public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
         public ProductService(IProductRepository productRepository)
@@ -22,12 +23,6 @@ namespace Business.Service
             };
             return Map(await _productRepository.Create(entity));
         }
-
-        public Task Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ICollection<ProductResponse>> GetAll(ProductRequest request)
         {
             var products = await _productRepository.GetAll(request.PageSize, request.PageNumber);
@@ -45,6 +40,11 @@ namespace Business.Service
                 Price = product.Price,
             };
             return Map(await _productRepository.Update(entity));
+        }
+
+        Task<UserResponse> IProductService.GetById(int userId)
+        {
+            throw new NotImplementedException();
         }
         #region
         private ProductResponse? Map(Product product) =>
