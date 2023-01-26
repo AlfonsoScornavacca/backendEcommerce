@@ -9,5 +9,6 @@ namespace DataAccess.Abstractions
         Task Delete(int id);
         Task<User> GetById(int id);
         Task<ICollection<User>> GetAll(int pageSize, int pageNumber);
+        Task<User>GetByEmail(string email);
     }
 }
