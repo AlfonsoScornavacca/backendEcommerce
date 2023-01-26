@@ -9,6 +9,6 @@ namespace Business.Abstractions
         Task<ProductResponse> Create(CreateProduct product);
         Task<ProductResponse> Update(int id, CreateProduct product);
         Task<ICollection<ProductResponse>> GetAll(ProductRequest request);
-        Task<UserResponse> GetById(int userId);
+        Task<ProductResponse> GetById(int Id);
     }
 }

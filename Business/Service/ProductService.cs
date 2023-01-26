@@ -42,10 +42,6 @@ namespace Business.Service
             return Map(await _productRepository.Update(entity));
         }
 
-        Task<UserResponse> IProductService.GetById(int userId)
-        {
-            throw new NotImplementedException();
-        }
         #region
         private ProductResponse? Map(Product product) =>
             product != null
