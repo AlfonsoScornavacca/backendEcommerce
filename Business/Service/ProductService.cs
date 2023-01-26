@@ -1,11 +1,7 @@
-﻿using Business.Models.Response;
+﻿using Business.Models.Request;
+using Business.Models.Response;
 using DataAccess.Abstractions;
 using DataAccess.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Service
 {
@@ -17,9 +13,14 @@ namespace Business.Service
             _productRepository = productRepository;
         }
 
-        public Task<Product> Create(Product product)
+        public async Task<ProductResponse> Create(CreateProduct product)
         {
-            throw new NotImplementedException();
+            var entity = new Product
+            {
+                Name = product.Name,
+                Price = product.Price,
+            };
+            return Map(await _productRepository.Create(entity));
         }
 
         public Task Delete(int id)
@@ -27,9 +28,10 @@ namespace Business.Service
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Product>> GetAll(int pageSize, int pageNumber)
+        public async Task<ICollection<ProductResponse>> GetAll(ProductRequest request)
         {
-            throw new NotImplementedException();
+            var products = await _productRepository.GetAll(request.pageSize, request.pageNumber);
+            return products.Select(product => Map(product)).ToList()
         }
 
         public Task<Product> GetById(int id)
@@ -37,9 +39,16 @@ namespace Business.Service
             throw new NotImplementedException();
         }
 
-        public Task<Product> Update(Product product)
+        public async Task<ProductResponse> Update(int id, CreateProduct product)
         {
-            throw new NotImplementedException();
+
+            var entity = new Product
+            {   
+                Id = id,
+                Name = product.Name,
+                Price = product.Price,
+            };
+            return Map(await _productRepository.Update(entity));
         }
         #region
         private ProductResponse Map(Product product) =>
