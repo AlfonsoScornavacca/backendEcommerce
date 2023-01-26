@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Business.Models.Request;
+using Business.Models.Response;
 
 namespace Business.Abstractions
 {
-    internal interface IProductService
+    public interface IProductService
     {
+        Task<ProductResponse> Create(CreateProduct product);
+        Task<ProductResponse> Update(int id, CreateProduct product);
+        Task<ICollection<ProductResponse>> GetAll(ProductRequest request);
+        Task<UserResponse> GetById(int userId);
     }
 }

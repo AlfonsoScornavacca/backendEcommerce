@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Business.Models.Request;
+using Business.Models.Response;
 
 namespace Business.Abstractions
 {
-    internal interface IOrderService
+    public interface IOrderService
     {
+        Task<OrderResponse> Create(CreateOrder order);
+        Task<OrderResponse> Update(int id, CreateOrder order);
+        Task<ICollection<OrderResponse>> GetAll(OrderRequest request);
+        Task<OrderResponse> GetById(int orderId);
     }
 }
