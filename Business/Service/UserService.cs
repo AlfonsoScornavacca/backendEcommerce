@@ -30,7 +30,7 @@ namespace Business.Service
 
         public async Task<ICollection<UserResponse>> GetAll(UserRequest request)
         {
-            var users = await _userRepository.GetAll(request.PageZise, request.PageNumber);
+            var users = await _userRepository.GetAll(request.PageSize, request.PageNumber);
             return users.Select(user => Map(user)).ToList();
         }
 
@@ -41,7 +41,7 @@ namespace Business.Service
         public async  Task<UserResponse> GetByEmail(string email)
         {
             var usersByEmail = await _userRepository.GetByEmail(email);
-            return usersByEmail.Select(email => Map(user));
+            return Map(usersByEmail);
         }
            
         public async Task<UserResponse> Update(int id, CreateUser user)
@@ -56,15 +56,17 @@ namespace Business.Service
             return Map(await _userRepository.Update(updateUser));
         }
 
-        #region Private
+        #region 
 
-        private UserResponse Map(User user) =>
-            new UserResponse
+        private UserResponse? Map(User user) =>
+            user != null
+            ? new UserResponse
             {
                 Name = user.Name,
                 Email = user.Email,
                 Id = user.Id,
-            };
+            } 
+            : null;
         #endregion
     }
 }

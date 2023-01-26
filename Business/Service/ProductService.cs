@@ -30,15 +30,11 @@ namespace Business.Service
 
         public async Task<ICollection<ProductResponse>> GetAll(ProductRequest request)
         {
-            var products = await _productRepository.GetAll(request.pageSize, request.pageNumber);
-            return products.Select(product => Map(product)).ToList()
+            var products = await _productRepository.GetAll(request.PageSize, request.PageNumber);
+            return products.Select(product => Map(product)).ToList();
         }
 
-        public Task<Product> GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+        public async Task<ProductResponse> GetById(int productId) => Map(await _productRepository.GetById(productId));
         public async Task<ProductResponse> Update(int id, CreateProduct product)
         {
 
@@ -51,13 +47,15 @@ namespace Business.Service
             return Map(await _productRepository.Update(entity));
         }
         #region
-        private ProductResponse Map(Product product) =>
-            new ProductResponse
+        private ProductResponse? Map(Product product) =>
+            product != null
+            ? new ProductResponse
             {
                 Id = product.Id,
                 Name = product.Name,
                 Price = product.Price,
-            };
+            } : null;
+
         #endregion
     }
 }
