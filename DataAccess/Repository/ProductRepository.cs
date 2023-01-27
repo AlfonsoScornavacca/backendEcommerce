@@ -11,9 +11,9 @@ namespace DataAccess.Repository
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly DataContext _context;
+        private readonly AppContext _context;
 
-        public ProductRepository(DataContext context)
+        public ProductRepository(AppContext context)
         {
             _context = context;
         }

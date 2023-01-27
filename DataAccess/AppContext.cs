@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
 {
-    public class DataContext : DbContext
+    public class AppContext : DbContext
     {
-        public DataContext(DbContextOptions<DbContext> options) : base(options)
+        public AppContext(DbContextOptions<AppContext> options) : base(options)
         {
 
         }

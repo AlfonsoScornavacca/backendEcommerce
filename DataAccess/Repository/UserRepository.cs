@@ -7,9 +7,9 @@ namespace DataAccess.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DataContext _context;
+        private readonly AppContext _context;
 
-        public UserRepository(DataContext context)
+        public UserRepository(AppContext context)
         {
             _context = context;
         }

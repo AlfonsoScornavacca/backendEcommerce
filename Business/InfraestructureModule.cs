@@ -13,14 +13,13 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public static class InfraestructureModule
+    public static class InfrastructureModule
     {
-        public static IServiceCollection AddInfrastructureModule(this IServiceCollection services, IConfiguration configuration) => services
+        public static IServiceCollection AddInfrastructureModule(this IServiceCollection services, IConfiguration configuration) =>
+            services
             //Context
-            .AddDbContext<DataAccess.DataContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")),
-            ServiceLifetime.Transient,
-            ServiceLifetime.Scoped)
+            .AddDbContext<DataAccess.AppContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")))
             //Repositories
             .AddTransient<IUserRepository, UserRepository>()
             .AddTransient<IProductRepository, ProductRepository>()

@@ -7,9 +7,9 @@ namespace DataAccess.Repository
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly DataContext _context;
+        private readonly AppContext _context;
 
-        public OrderRepository(DataContext context)
+        public OrderRepository(AppContext context)
         {
             _context = context;
         }
