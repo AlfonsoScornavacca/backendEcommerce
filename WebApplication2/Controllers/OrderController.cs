@@ -1,6 +1,8 @@
-﻿namespace WebApplication2.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace WebApplication2.Controllers
 {
-    public class OrderController
+    public class OrderController : ControllerBase
     {
     }
 }
