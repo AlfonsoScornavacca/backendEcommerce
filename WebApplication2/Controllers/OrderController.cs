@@ -16,7 +16,7 @@ namespace WebApplication2.Controllers
             _orderService = orderService;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public async Task<ActionResult<ICollection<OrderResponse>>> Get([FromQuery] OrderRequest request) =>
             Ok(await _orderService.GetAll(request));
 
@@ -30,6 +30,6 @@ namespace WebApplication2.Controllers
 
         [HttpPut("{id}")]
         public async Task<ActionResult<OrderResponse>> Put(int id, [FromBody] CreateOrder order)=>
-            await _orderService.Update(id, order);
+            await _orderService.Update(id, order);*/
     }
 }

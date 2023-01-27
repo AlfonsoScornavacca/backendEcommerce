@@ -9,6 +9,9 @@
       "WebApplication2/1.0.0": {
         "dependencies": {
           "Business": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.2",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.2",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.2",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {

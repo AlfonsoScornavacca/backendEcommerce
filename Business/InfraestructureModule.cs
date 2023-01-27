@@ -1,4 +1,5 @@
 ﻿using Business.Abstractions;
+using Business.Service;
 using DataAccess.Abstractions;
 using DataAccess.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -25,8 +26,8 @@ namespace Business
             .AddTransient<IProductRepository, ProductRepository>()
             .AddTransient<IOrderRepository, OrderRepository>()
             //Services
-            .AddTransient<IUserService, IUserService>()
-            .AddTransient<IProductService, IProductService>()
-            .AddTransient<IOrderService, IOrderService>();
+            .AddTransient<IUserService, UserService>()
+            .AddTransient<IProductService, ProductService>()
+            .AddTransient<IOrderService, OrderService>();
     }
 }

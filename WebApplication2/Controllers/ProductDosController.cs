@@ -1,23 +1,24 @@
 ﻿using Business.Abstractions;
 using Business.Models.Request;
 using Business.Models.Response;
-using Business.Service;
 using Microsoft.AspNetCore.Mvc;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebApplication2.Controllers
 {
-    [Route("api/[controllers]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductDosController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        public ProductDosController(IProductService productService)
         {
             _productService = productService;
         }
 
 
-        /* [HttpGet]
+         [HttpGet]
          public async Task<ActionResult<ICollection<ProductResponse>>> Get([FromQuery] ProductRequest request) =>
              Ok(await _productService.GetAll(request));
 
@@ -32,9 +33,12 @@ namespace WebApplication2.Controllers
 
          [HttpPut("{id}")]
          public async Task<ProductResponse> Put(int id, [FromBody] CreateProduct product) =>
-             await _productService.Update(id, product);*/
+             await _productService.Update(id, product);
 
-
+        // DELETE api/<ProductDosController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
     }
-
 }
