@@ -40,6 +40,11 @@ namespace DataAccess.Repository
                 .ToListAsync();
         }
 
+        public Task<User> GetByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<User> GetById(int id) =>
         await _context.Users
             .AsNoTracking().
