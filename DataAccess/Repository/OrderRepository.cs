@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstractions;
+﻿using Azure.Core;
+using DataAccess.Abstractions;
 using DataAccess.Entities;
+using DataAccess.Extentions;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -33,9 +35,8 @@ namespace DataAccess.Repository
 
         public async Task<ICollection<Order>> GetAll(int pageSize, int pageNumber)
         {
-            IQueryable<Order> query = _context.Orders;
-            query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-            return await query
+            return await _context.Orders
+                .Page(pageSize, pageNumber)
                 .Include(x => x.Items)
                 .AsNoTracking()
                 .ToListAsync();

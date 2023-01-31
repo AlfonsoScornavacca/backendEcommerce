@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstractions;
 using DataAccess.Entities;
+using DataAccess.Extentions;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repository
@@ -33,9 +34,8 @@ namespace DataAccess.Repository
 
         public async Task<ICollection<User>> GetAll(int pageSize, int pageNumber)
         {
-            IQueryable<User> query = _context.Users;
-            query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-            return await query
+            return await _context.Users
+                .Page(pageSize, pageNumber)
                 .AsNoTracking()
                 .ToListAsync();
         }

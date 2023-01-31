@@ -22,8 +22,12 @@ namespace WebApplication2.Controllers
          public async Task<ActionResult<ICollection<ProductResponse>>> Get([FromQuery] ProductRequest request) =>
              Ok(await _productService.GetAll(request));
 
+        [HttpGet("/search")]
+        public async Task<ActionResult<ICollection<ProductResponse>>> Search([FromQuery] ProductSearchRequest request) =>
+    Ok(await _productService.Search(request));
 
-         [HttpGet("{id}")]
+
+        [HttpGet("{id}")]
          public async Task<ActionResult<ProductResponse>> Get(int id) =>
              await _productService.GetById(id);
 

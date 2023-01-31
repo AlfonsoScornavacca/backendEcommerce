@@ -10,5 +10,6 @@ namespace Business.Abstractions
         Task<ProductResponse> Update(int id, CreateProduct product);
         Task<ICollection<ProductResponse>> GetAll(ProductRequest request);
         Task<ProductResponse> GetById(int Id);
+        Task<ICollection<ProductResponse>> Search(ProductSearchRequest request);
     }
 }

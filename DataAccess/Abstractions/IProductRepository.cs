@@ -10,5 +10,6 @@ namespace DataAccess.Abstractions
         Task Delete(int id);
         Task<Product> GetById(int id);
         Task<ICollection<Product>> GetAll(int pageSize, int pageNumber);
+        Task<ICollection<Product>> Search(int pageSize, int pageNumber, string name);
     }
 }

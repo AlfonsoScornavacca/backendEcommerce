@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstractions;
 using DataAccess.Entities;
+using DataAccess.Extentions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -37,9 +38,16 @@ namespace DataAccess.Repository
 
         public async Task<ICollection<Product>> GetAll(int pageSize, int pageNumber)
         {
-            IQueryable<Product> query = _context.Products;
-            query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-            return await query
+            return await _context.Products
+                .Page(pageSize, pageNumber)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+        public async Task<ICollection<Product>> Search(int pageSize, int pageNumber, string name)
+        {
+            return await _context.Products
+                .FilterByName(name)
+                .Page(pageSize, pageNumber)
                 .AsNoTracking()
                 .ToListAsync();
         }

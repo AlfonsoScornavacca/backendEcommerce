@@ -28,7 +28,11 @@ namespace Business.Service
             var products = await _productRepository.GetAll(request.PageSize, request.PageNumber);
             return products.Select(product => Map(product)).ToList();
         }
-
+        public async Task<ICollection<ProductResponse>> Search(ProductSearchRequest request)
+        {
+            var products = await _productRepository.Search(request.PageSize, request.PageNumber, request.name);
+            return products.Select(product => Map(product)).ToList();
+        }
         public async Task<ProductResponse> GetById(int productId) => Map(await _productRepository.GetById(productId));
         public async Task<ProductResponse> Update(int id, CreateProduct product)
         {
