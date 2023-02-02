@@ -46,7 +46,7 @@ namespace DataAccess.Repository
         await _context.Orders
             .Include(x => x.Items)
             .AsNoTracking().
-            SingleAsync();
+            SingleAsync(x => x.Id == id);
 
         public async Task<Order> Update(Order order)
         {

@@ -55,7 +55,7 @@ namespace DataAccess.Repository
         public async Task<Product> GetById(int id) =>
         await _context.Products
             .AsNoTracking().
-            SingleAsync();
+            SingleAsync(x => x.Id == id);
 
         public async Task<Product> Update(Product product)
         {
