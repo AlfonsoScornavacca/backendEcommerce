@@ -27,6 +27,7 @@ namespace Business
             //Services
             .AddTransient<IUserService, UserService>()
             .AddTransient<IProductService, ProductService>()
-            .AddTransient<IOrderService, OrderService>();
+            .AddTransient<IOrderService, OrderService>()
+            .AddTransient<IAuthService, AuthService>();
     }
 }
