@@ -28,7 +28,8 @@ namespace Business.Service
         {
             var email = request.Email?.Trim() ?? "";
             //Obtener Hash de request.Password
-            var user = await _usersService.GetByEmail(email);
+            var password = request.Password?.Trim() ?? "";
+            var user = await _usersService.GetByEmailAndPassword(email, password);
 
             if (user != null)
             {
@@ -53,8 +54,8 @@ namespace Business.Service
             return null;
         }
 
-        public async Task<UserResponse> Me(string email) =>
-            await _usersService.GetByEmail(email);
+        public async Task<UserResponse> Me(string email, string password) =>
+            await _usersService.GetByEmailAndPassword(email, password);
 
     }
 }

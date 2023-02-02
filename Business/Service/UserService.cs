@@ -38,9 +38,9 @@ namespace Business.Service
             Map(await _userRepository.GetById(id));
 
 
-        public async  Task<UserResponse> GetByEmail(string email)
+        public async  Task<UserResponse> GetByEmailAndPassword(string email, string password)
         {
-            var usersByEmail = await _userRepository.GetByEmail(email);
+            var usersByEmail = await _userRepository.GetByEmailAndPassword(email, password);
             return Map(usersByEmail);
         }
            

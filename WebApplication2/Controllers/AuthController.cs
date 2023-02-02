@@ -31,10 +31,11 @@ namespace WebApplication2.Controllers {
             public async Task<IActionResult> Me()
             {
                 var claimEmail = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Email");
-                if (claimEmail == null)
+                var claimPassword = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Password");
+            if (claimEmail == null || claimPassword == null)
                     return BadRequest("User not found.");
 
-                return Ok(await _authService.Me(claimEmail.Value));
+                return Ok(await _authService.Me(claimEmail.Value, claimPassword.Value));
             }
         }
 

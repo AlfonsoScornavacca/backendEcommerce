@@ -10,6 +10,6 @@ namespace Business.Abstractions
         Task<UserResponse> Update(int id, CreateUser user);
         Task<ICollection<UserResponse>> GetAll(UserRequest request);
         Task<UserResponse> GetById(int id);
-        Task<UserResponse> GetByEmail(string email);
+        Task<UserResponse> GetByEmailAndPassword(string email, string password);
     }
 }

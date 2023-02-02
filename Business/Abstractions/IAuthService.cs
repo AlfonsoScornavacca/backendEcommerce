@@ -11,7 +11,7 @@ namespace Business.Abstractions
     public interface IAuthService
     {
         Task<string> Login(LoginRequest request);
-        Task<UserResponse> Me(string email);
+        Task<UserResponse> Me(string email, string password);
 
     }
 }
