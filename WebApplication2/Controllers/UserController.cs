@@ -1,10 +1,12 @@
 ﻿using Business.Abstractions;
 using Business.Models.Request;
 using Business.Models.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication2.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

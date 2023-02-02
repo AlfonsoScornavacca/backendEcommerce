@@ -27,6 +27,7 @@ namespace Business.Service
         public async Task<string> Login(LoginRequest request)
         {
             var email = request.Email?.Trim() ?? "";
+            //Obtener Hash de request.Password
             var user = await _usersService.GetByEmail(email);
 
             if (user != null)

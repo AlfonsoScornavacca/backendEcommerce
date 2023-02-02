@@ -40,9 +40,10 @@ namespace DataAccess.Repository
                 .ToListAsync();
         }
 
-        public Task<User> GetByEmail(string email)
+        public async Task<User> GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            return await _context.Users
+                .SingleAsync(x => x.Email == email);
         }
 
         public async Task<User> GetById(int id) =>

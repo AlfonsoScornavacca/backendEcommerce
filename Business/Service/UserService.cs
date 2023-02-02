@@ -22,7 +22,7 @@ namespace Business.Service
             {
                 Email = user.Email,
                 Name = user.Name,
-                Password = user.Password,
+                Password = user.Password, // Envolver password con funcion Hash
             };
 
             return Map(await _userRepository.Create(createUser));
