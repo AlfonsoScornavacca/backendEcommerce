@@ -1,4 +1,5 @@
 ﻿using Business.Abstractions;
+using Business.Helpers;
 using Business.Models.Request;
 using Business.Models.Response;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +29,7 @@ namespace Business.Service
         {
             var email = request.Email?.Trim() ?? "";
             //Obtener Hash de request.Password
-            var password = request.Password?.Trim() ?? "";
+            var password = Encrypt.GetSHA256(request.Password).Trim() ?? "";
             var user = await _usersService.GetByEmailAndPassword(email, password);
 
             if (user != null)

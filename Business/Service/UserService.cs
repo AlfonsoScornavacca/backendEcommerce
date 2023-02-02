@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using Business.Abstractions;
+using Business.Helpers;
 using Business.Models.Request;
 using Business.Models.Response;
 using DataAccess.Abstractions;
@@ -22,7 +23,7 @@ namespace Business.Service
             {
                 Email = user.Email,
                 Name = user.Name,
-                Password = user.Password, // Envolver password con funcion Hash
+                Password = Encrypt.GetSHA256(user.Password) // Envolver password con funcion Hash
             };
 
             return Map(await _userRepository.Create(createUser));
@@ -51,7 +52,7 @@ namespace Business.Service
                 Id = id,
                 Email = user.Email,
                 Name = user.Name,
-                Password = user.Password,
+                Password = Encrypt.GetSHA256(user.Password)
             };
             return Map(await _userRepository.Update(updateUser));
         }
@@ -65,6 +66,7 @@ namespace Business.Service
                 Name = user.Name,
                 Email = user.Email,
                 Id = user.Id,
+                Password = user.Password,
             } 
             : null;
         #endregion

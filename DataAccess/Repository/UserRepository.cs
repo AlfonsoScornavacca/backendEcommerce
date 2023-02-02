@@ -40,16 +40,18 @@ namespace DataAccess.Repository
                 .ToListAsync();
         }
 
-        public async Task<User> GetByEmailAndPassword(string email, string password)
+        public async  Task<User?> GetByEmailAndPassword(string email, string password)
         {
             return await _context.Users
-                .SingleAsync(x => x.Email == email && x.Password == password);
+                .Where(x => x.Email == email && x.Password == password)
+                .FirstAsync();
+            
         }
 
         public async Task<User> GetById(int id) =>
         await _context.Users
-            .AsNoTracking().
-            SingleAsync();
+            .AsNoTracking()
+            .SingleAsync(x => x.Id == id);
 
         public async Task<User> Update(User user)
         {
